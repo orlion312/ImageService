@@ -52,10 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageService.cs">
+    <Compile Include="ImageService\ImageService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ImageService.Designer.cs">
+    <Compile Include="ImageService\ImageService.Designer.cs">
       <DependentUpon>ImageService.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageService.Infrastructure\Enums\CommandEnum.cs" />
@@ -69,9 +69,6 @@
     <Compile Include="ImageService\Controller\Handlers\IDirectoryHandler.cs" />
     <Compile Include="ImageService\Controller\IImageController.cs" />
     <Compile Include="ImageService\Controller\ImageController.cs" />
-    <Compile Include="ImageService\ImageService.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ImageService\Modal\Event\CommandRecievedEventArgs.cs" />
     <Compile Include="ImageService\Modal\Event\DirectoryCloseEventArgs.cs" />
     <Compile Include="ImageService\Modal\IImageServiceModal.cs" />
@@ -90,7 +87,7 @@
     <None Include="ImageService\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ImageService.resx">
+    <EmbeddedResource Include="ImageService\ImageService.resx">
       <DependentUpon>ImageService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">

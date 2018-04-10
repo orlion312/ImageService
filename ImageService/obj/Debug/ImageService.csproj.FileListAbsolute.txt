@@ -7,3 +7,12 @@ c:\users\or\documents\visual studio 2015\Projects\ImageService\ImageService\bin\
 c:\users\or\documents\visual studio 2015\Projects\ImageService\ImageService\bin\Debug\ImageService.pdb
 c:\users\or\documents\visual studio 2015\Projects\ImageService\ImageService\obj\Debug\ImageService.exe
 c:\users\or\documents\visual studio 2015\Projects\ImageService\ImageService\obj\Debug\ImageService.pdb
+C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe.config
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.exe
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.pdb
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.csprojResolveAssemblyReference.cache
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.ImageService.resources
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.ProjectInstaller.resources
+C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.csproj.GenerateResource.Cache
+C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.pdb

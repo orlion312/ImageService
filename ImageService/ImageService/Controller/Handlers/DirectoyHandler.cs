@@ -34,7 +34,12 @@ namespace ImageService.Controller.Handlers
 
         public void StartHandleDirectory(string dirPath)
         {
-            throw new NotImplementedException();
+            m_dirWatcher.Created += OnNewFileCreated;
+        }
+
+        private void OnNewFileCreated(object sender, FileSystemEventArgs e)
+        {
+            
         }
 
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
