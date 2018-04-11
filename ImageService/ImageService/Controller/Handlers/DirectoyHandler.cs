@@ -35,15 +35,17 @@ namespace ImageService.Controller.Handlers
         {
             m_path = dirPath;
             m_dirWatcher = new FileSystemWatcher();
+            m_dirWatcher.Path = dirPath;
             m_dirWatcher.Created += OnNewFileCreated;
-
+            m_dirWatcher.EnableRaisingEvents = true;
         }
 
         private void OnNewFileCreated(object sender, FileSystemEventArgs e)
         {
             string[] args = new string[] { e.FullPath };
             bool result;
-            m_controller.ExecuteCommand((int)CommandEnum.NewFileCommand, args, out result);
+            string msg = m_controller.ExecuteCommand((int)CommandEnum.NewFileCommand, args, out result);
+            m_logging.Log(msg, MessageTypeEnum.INFO);
         }
 
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
