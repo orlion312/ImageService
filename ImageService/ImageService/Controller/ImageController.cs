@@ -27,16 +27,15 @@ namespace ImageService.Controller
         public string ExecuteCommand(int commandID, string[] args, out bool resultSuccesful)
         {
             // Write Code Here
-            Task<Tuple<string, bool>> task = new Task<Tuple<string, bool>>(() => {
-                bool resultSuccesfulTemp;
-                string message = this.commands[commandID].Execute(args, out resultSuccesfulTemp);
-                return Tuple.Create(message, resultSuccesfulTemp);
-            });
-            task.Start();
-            task.Wait();
-            Tuple<string, bool> result = task.Result;
-            resultSuccesful = result.Item2;
-            return result.Item1;
+            try
+            {
+                return commands[commandID].Execute(args, out resultSuccesful);
+            }
+            catch (Exception e)
+            {
+                resultSuccesful = false;
+                return e.Message;
+            }
         }
     }
 }

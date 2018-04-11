@@ -10,6 +10,7 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
 using System.Text.RegularExpressions;
+using ImageService.Server;
 
 namespace ImageService.Controller.Handlers
 {
@@ -24,35 +25,49 @@ namespace ImageService.Controller.Handlers
 
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
 
-        public DirectoyHandler(ILoggingService m_logging, IImageController m_controller, string m_path)
+        public DirectoyHandler(ILoggingService m_logging, IImageController m_controller)
         {
             this.m_controller = m_controller;
             this.m_logging = m_logging;
-            this.m_path = m_path;
-            this.m_dirWatcher = new FileSystemWatcher(this.m_path);
         }
 
         public void StartHandleDirectory(string dirPath)
         {
+            m_path = dirPath;
+            m_dirWatcher = new FileSystemWatcher();
             m_dirWatcher.Created += OnNewFileCreated;
+
         }
 
         private void OnNewFileCreated(object sender, FileSystemEventArgs e)
         {
-            
+            string[] args = new string[] { e.FullPath };
+            bool result;
+            m_controller.ExecuteCommand((int)CommandEnum.NewFileCommand, args, out result);
         }
 
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e)
         {
             bool result;
             string msg = m_controller.ExecuteCommand(e.CommandID, e.Args, out result);
-            if(result)
+            if (result)
             {
-                m_logging.Log(msg , MessageTypeEnum.INFO);
-            } else
+                m_logging.Log(msg, MessageTypeEnum.INFO);
+            }
+            else
             {
                 m_logging.Log(msg, MessageTypeEnum.FAIL);
             }
+        }
+
+        public void onCloseService(object sender, CommandRecievedEventArgs e)
+        {
+            ImageServer server = (ImageServer)sender;
+            m_dirWatcher.EnableRaisingEvents = false;
+            m_dirWatcher.Dispose();
+            m_logging.Log("Handler closed " + m_path, MessageTypeEnum.INFO);
+            server.CloseService -= OnCommandRecieved;
+
         }
     }
 }

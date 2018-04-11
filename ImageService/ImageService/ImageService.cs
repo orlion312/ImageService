@@ -12,6 +12,9 @@ using ImageService.Controller;
 using ImageService.Server;
 using ImageService.Modal;
 using ImageService.Logging;
+using System.Configuration;
+using ImageService.Controller.Handlers;
+using ImageService.Logging.Modal;
 
 public enum ServiceState
 {
@@ -40,39 +43,65 @@ namespace ImageService
 {
     public partial class ImageService : ServiceBase
     {
-        private System.ComponentModel.IContainer components;
-        private System.Diagnostics.EventLog eventLog1;
+        private EventLog eventLog1;
+        private ILoggingService logger;
+        private int thumbnailSize;
         private int eventId = 1;
         [DllImport("advapi32.dll", SetLastError = true)]
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
         private ImageServer m_imageServer;
+        private readonly string outputDir;
+        private readonly string handledDir;
+
 
         public ImageService(string[] args) {
             InitializeComponent();
-            string eventSourceName = System.Configuration.ConfigurationManager.AppSettings.Get("SourceName");
-            string logName = System.Configuration.ConfigurationManager.AppSettings.Get("LogName");
-
-            eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
+            string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
+            string logName = ConfigurationManager.AppSettings.Get("LogName");
+            outputDir = ConfigurationManager.AppSettings["OutputDir"];
+            handledDir = ConfigurationManager.AppSettings["HandledDir"];
+            if (!int.TryParse(ConfigurationManager.AppSettings["ThumbnailSize"], out thumbnailSize))
             {
-                System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
+                // Sets default thumbnail size
+                thumbnailSize = 12;
+            }
+            
+            eventLog1 = new System.Diagnostics.EventLog();
+            try
+            {
+                if (!EventLog.SourceExists(eventSourceName))
+                {
+                    EventLog.CreateEventSource(eventSourceName, logName);
+                }
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
             }
             eventLog1.Source = eventSourceName;
             eventLog1.Log = logName;
         }
 
         protected override void OnStart(string[] args) {
-            eventLog1.WriteEntry("In OnStart");
+            IImageServiceModal imageServiceModal = new ImageServiceModal(outputDir, thumbnailSize);
+            ImageController imageController = new ImageController(imageServiceModal);
+            logger = new LoggingService();
+            logger.MessageRecieved += onMessage;
+
+            IDirectoryHandler handler = new DirectoyHandler(logger, imageController);
+            m_imageServer = new ImageServer(imageController, logger);
+
+            logger.Log("On start", Logging.Modal.MessageTypeEnum.INFO);
+           
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
-            OnPending(serviceStatus);
+            //OnPending(serviceStatus);
 
             // Set up a timer to trigger every minute.  
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 60000; // 60 seconds  
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
+            //timer.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimer);
             timer.Start();
 
             // Update the service state to Running.  
@@ -80,54 +109,48 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
             // create logger, controller , modal ,server.
-            IImageServiceModal imageServiceModal = new ImageServiceModal();
-            ILoggingService logger = new LoggingService();
-            ImageController imageController = new ImageController(imageServiceModal);
-            m_imageServer = new ImageServer(imageController, logger);
              
         }
 
-        public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
+        private void onMessage(object sender, MessageRecievedEventArgs e)
         {
-            // TODO: Insert monitoring activities here.  
-            eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
+            eventLog1.WriteEntry(e.Status + ":" + e.Message);
         }
 
         protected override void OnStop()
         {
-            eventLog1.WriteEntry("In onStop.");
+            logger.Log("On stop", Logging.Modal.MessageTypeEnum.INFO); ;
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOP_PENDING;
-            OnPending(serviceStatus);
+            //OnPending(serviceStatus);
 
             // Update the service state to Running.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+
+            m_imageServer.onCloseService();
         }
 
-        protected override void OnContinue()
-        {
-            eventLog1.WriteEntry("In OnContinue.");
-        }
 
-        protected override void OnShutdown()
-        {
-            eventLog1.WriteEntry("In OnShutdown.");
-        }
+        /* protected override void OnShutdown()
+         {
+             eventLog1.WriteEntry("In OnShutdown.");
+         }
 
-        protected override void OnPause()
-        {
-            eventLog1.WriteEntry("In OnPause.");
-        }
+         protected override void OnPause()
+         {
+             eventLog1.WriteEntry("In OnPause.");
+         }
 
-        private void OnPending(ServiceStatus serviceStatus)
-        {
-            eventLog1.WriteEntry("In Pending.");
+         private void OnPending(ServiceStatus serviceStatus)
+         {
+             eventLog1.WriteEntry("In Pending.");
 
-            serviceStatus.dwWaitHint = 100000;
-            SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-        }
+             serviceStatus.dwWaitHint = 100000;
+             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
+         }
+         */
     }
 }

@@ -1,0 +1,8 @@
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\bin\Debug\UnitTestProject3.dll
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\bin\Debug\UnitTestProject3.pdb
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\bin\Debug\ImageService.exe
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\bin\Debug\ImageService.pdb
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\obj\Debug\UnitTestProject3.csprojResolveAssemblyReference.cache
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\obj\Debug\UnitTestProject3.dll
+C:\Users\or\Documents\GitHub\ImageService\UnitTestProject3\obj\Debug\UnitTestProject3.pdb

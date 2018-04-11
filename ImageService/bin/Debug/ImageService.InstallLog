@@ -53,3 +53,84 @@ Affected parameters are:
    logtoconsole = 
    assemblypath = C:\Users\or\Documents\Visual Studio 2015\Projects\ImageService\ImageService\bin\Debug\ImageService.exe
    logfile = C:\Users\or\Documents\Visual Studio 2015\Projects\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Uninstalling assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+Removing EventLog source ImageService.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Removing EventLog source ImageService.
+An exception occurred during the uninstallation of the System.Diagnostics.EventLogInstaller installer.
+System.Security.SecurityException: Requested registry access is not allowed.
+An exception occurred while uninstalling. This exception will be ignored and the uninstall will continue. However, the application might not be fully uninstalled after the uninstall is complete.
+Uninstalling assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Removing EventLog source ImageService.
+Service ImageService is being removed from the system...
+Service ImageService was successfully removed from the system.
+Installing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Installing service ImageService...
+Service ImageService has been successfully installed.
+Creating EventLog source ImageService in log Application...
+Committing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Uninstalling assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Removing EventLog source ImageService.
+Service ImageService is being removed from the system...
+Service ImageService was successfully removed from the system.
+Installing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Installing service ImageService...
+Service ImageService has been successfully installed.
+Creating EventLog source ImageService in log Application...
+Committing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Uninstalling assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Removing EventLog source ImageService.
+Service ImageService is being removed from the system...
+Service ImageService was successfully removed from the system.
+Installing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Installing service ImageService...
+Service ImageService has been successfully installed.
+Creating EventLog source ImageService in log Application...
+Committing assembly 'C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
+   logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
