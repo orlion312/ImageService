@@ -29,6 +29,7 @@ namespace ImageService.Modal
         public string AddFile(string path, out bool result)
         {
             string msg="";
+            string filePath = "";
             try
             {
                 if (File.Exists(path))
@@ -43,25 +44,21 @@ namespace ImageService.Modal
                         Directory.CreateDirectory(monthPath);
                     }
 
-                    if (!File.Exists(monthPath + "\\" + Path.GetFileName(path)))
-                    {
-                        File.Copy(path, monthPath + "\\" + Path.GetFileName(path));
-                        msg = "Added " + Path.GetFileName(path) + " to " + monthPath;
-                    }
+                    filePath = SameName(path, monthPath);
+                    File.Copy(path, filePath);
+                    msg = "Added " + Path.GetFileName(path) + " to " + monthPath;
 
                     if (!Directory.Exists(thumbMonthPath))
                     {
                         Directory.CreateDirectory(thumbMonthPath);
                     }
 
-                    if (!File.Exists(thumbMonthPath + "\\" + Path.GetFileName(path)))
-                    {
-                        Image thumb = Image.FromStream(new MemoryStream(File.ReadAllBytes(path)));
-                        thumb = (Image)(new Bitmap(thumb, new Size(m_thumbnailSize, m_thumbnailSize)));
-                        thumb.Save(thumbMonthPath + "\\" + Path.GetFileName(path));
-                        msg += " and Added a thumbnail " + Path.GetFileName(path) + " to " + thumbMonthPath;
-                        thumb.Dispose();
-                    }
+                    filePath = SameName(path, thumbMonthPath);
+                    Image thumb = Image.FromStream(new MemoryStream(File.ReadAllBytes(path)));
+                    thumb = (Image)(new Bitmap(thumb, new Size(m_thumbnailSize, m_thumbnailSize)));
+                    thumb.Save(filePath);
+                    msg += " and Added a thumbnail " + Path.GetFileName(path) + " to " + thumbMonthPath;
+                    thumb.Dispose();
 
                     image.Dispose();
                     File.Delete(path);
@@ -101,6 +98,26 @@ namespace ImageService.Modal
         private bool HasImageExtension(string path)
         {
             return (path.EndsWith(".png") || path.EndsWith(".jpg") || path.EndsWith(".gif") || path.EndsWith(".bmp"));
+        }
+
+        private string SameName(string pathFile, string pathDir)
+        {
+            int counter = 0;
+            string fileNamePath = pathDir + "\\" + Path.GetFileName(pathFile);
+    //        if (!File.Exists(pathDir + "\\" + Path.GetFileName(pathFile)))
+    //        {
+     //           return fileNamePath;
+    //        }
+   //         else
+   //         {
+     //           fileNamePath = pathDir + "\\" + Path.GetFileNameWithoutExtension(pathFile) + "(" + counter.ToString() + ")" + Path.GetExtension(pathFile);
+                while (File.Exists(fileNamePath))
+                {
+                    counter++;
+                    fileNamePath = pathDir + "\\" + Path.GetFileNameWithoutExtension(pathFile) + "(" + counter.ToString() + ")" + Path.GetExtension(pathFile);
+            }
+            //         }
+            return fileNamePath;
         }
 
     }
