@@ -28,6 +28,7 @@ namespace ImageService.Modal
 
         public string AddFile(string path, out bool result)
         {
+            Directory.CreateDirectory(m_OutputFolder).Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             string msg="";
             string filePath = "";
             try
@@ -41,6 +42,7 @@ namespace ImageService.Modal
                     
                     if (!Directory.Exists(monthPath)) 
                     {
+
                         Directory.CreateDirectory(monthPath);
                     }
 
@@ -104,19 +106,12 @@ namespace ImageService.Modal
         {
             int counter = 0;
             string fileNamePath = pathDir + "\\" + Path.GetFileName(pathFile);
-    //        if (!File.Exists(pathDir + "\\" + Path.GetFileName(pathFile)))
-    //        {
-     //           return fileNamePath;
-    //        }
-   //         else
-   //         {
-     //           fileNamePath = pathDir + "\\" + Path.GetFileNameWithoutExtension(pathFile) + "(" + counter.ToString() + ")" + Path.GetExtension(pathFile);
+
                 while (File.Exists(fileNamePath))
                 {
                     counter++;
                     fileNamePath = pathDir + "\\" + Path.GetFileNameWithoutExtension(pathFile) + "(" + counter.ToString() + ")" + Path.GetExtension(pathFile);
             }
-            //         }
             return fileNamePath;
         }
 
