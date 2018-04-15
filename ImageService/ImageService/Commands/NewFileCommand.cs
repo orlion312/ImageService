@@ -13,11 +13,21 @@ namespace ImageService.Commands
     {
         private IImageServiceModal m_modal;
 
+        /// <summary>
+        /// the constructor of the class, get a Imodel
+        /// </summary>
+        /// <param name="modal">an object from IImageServiceModal that storing the model</param>
         public NewFileCommand(IImageServiceModal modal)
         {
             m_modal = modal;            // Storing the Modal
         }
 
+        /// <summary>
+        /// the method get an array of strings and a boolean, retuen the new path and the boolean
+        /// </summary>
+        /// <param name="args">an array of strings that represent the file</param>
+        /// <param name="result">a boolean that represent if the method succesed(true) or not(false)</param>
+        /// <returns>a string that represent the new path</returns>
         public string Execute(string[] args, out bool result)
         {
             try

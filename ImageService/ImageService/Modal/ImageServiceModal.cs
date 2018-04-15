@@ -20,14 +20,28 @@ namespace ImageService.Modal
         private static Regex r = new Regex(":");
         #endregion
 
+        /// <summary>
+        /// the constructor of the class, get the output directory and the size of the thumbnile
+        /// </summary>
+        /// <param name="output">A string of the output directory</param>
+        /// <param name="thumbnailSize">an Integer of the thumbnile size</param>
         public ImageServiceModal (string output, int thumbnailSize)
         {
             this.m_OutputFolder = output;
             this.m_thumbnailSize = thumbnailSize;
         }
 
+        /// <summary>
+        /// method of the class, get a path and a boolean, take the information data from the path file,
+        /// create the directory that need, move the file, create the thumbnile and return a boolean and a string 
+        /// </summary>
+        /// <param name="path">A string that represent the file path</param>
+        /// <param name="result">A boolean that represent the result of the model</param>
+        /// <returns>a string that represent the msg to write in the logging and a 
+        /// boolean that represent of transport succesed or not</returns>
         public string AddFile(string path, out bool result)
         {
+            //create the directory Images and make it hidden 
             Directory.CreateDirectory(m_OutputFolder).Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             string msg="";
             string filePath = "";
@@ -35,17 +49,19 @@ namespace ImageService.Modal
             {
                 if (File.Exists(path))
                 {
+                    //call the function HasImageExtension to check if the file is an image
                     if(!HasImageExtension(path)) {
                         throw new Exception("File is not an image");
                     }
+                    //call the function getDate to take the information of the file
                     getDate(path);
                     
                     if (!Directory.Exists(monthPath)) 
                     {
-
                         Directory.CreateDirectory(monthPath);
                     }
 
+                    //move the file to the appropriate directory
                     filePath = SameName(path, monthPath);
                     File.Copy(path, filePath);
                     msg = "Added " + Path.GetFileName(path) + " to " + monthPath;
@@ -55,6 +71,7 @@ namespace ImageService.Modal
                         Directory.CreateDirectory(thumbMonthPath);
                     }
 
+                    //create the thumbnile
                     filePath = SameName(path, thumbMonthPath);
                     Image thumb = Image.FromStream(new MemoryStream(File.ReadAllBytes(path)));
                     thumb = (Image)(new Bitmap(thumb, new Size(m_thumbnailSize, m_thumbnailSize)));
@@ -76,16 +93,37 @@ namespace ImageService.Modal
             }
         }
 
+        /// <summary>
+        /// the method get a path of file and take the information from it,
+        /// and create the paths of the other directiries, the year path, the month path.
+        /// </summary>
+        /// <param name="path">A string that represent the file path</param>
         private void getDate(string path)
         {
             image = Image.FromFile(path);
-            DateTime dataValue = GetDateTakenFromImage(path);
-            yearPath = m_OutputFolder + "\\" + dataValue.Year.ToString();
-            monthPath = yearPath + "\\" + dataValue.Month.ToString();
-            thumbYearPath = m_OutputFolder + "\\" + "Thumbnails" + "\\" + dataValue.Year.ToString();
-            thumbMonthPath = thumbYearPath + "\\" + dataValue.Month.ToString();
+            //call the function GetDateTakenFromImage to get the information
+            try
+            {
+                DateTime dataValue = GetDateTakenFromImage(path);
+                yearPath = m_OutputFolder + "\\" + dataValue.Year.ToString();
+                monthPath = yearPath + "\\" + dataValue.Month.ToString();
+                thumbYearPath = m_OutputFolder + "\\" + "Thumbnails" + "\\" + dataValue.Year.ToString();
+                thumbMonthPath = thumbYearPath + "\\" + dataValue.Month.ToString();
+            } catch(Exception e)
+            {
+                DateTime dataValue = File.GetCreationTime(path);
+                yearPath = m_OutputFolder + "\\" + dataValue.Year.ToString();
+                monthPath = yearPath + "\\" + dataValue.Month.ToString();
+                thumbYearPath = m_OutputFolder + "\\" + "Thumbnails" + "\\" + dataValue.Year.ToString();
+                thumbMonthPath = thumbYearPath + "\\" + dataValue.Month.ToString();
+            }
         }
 
+        /// <summary>
+        /// the method get a file path and get the date information from the file
+        /// </summary>
+        /// <param name="path">A string that represent the file path</param>
+        /// <returns>a DteTime that includes the detailes from the file</returns>
         public static DateTime GetDateTakenFromImage(string path)
         {
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -97,11 +135,24 @@ namespace ImageService.Modal
             }
         }
 
+        /// <summary>
+        /// the method get a file path and check if the file is an image
+        /// </summary>
+        /// <param name="path">A string that represent the file path</param>
+        /// <returns>a boolean that represent true if the file is an image and false otherwise</returns>
         private bool HasImageExtension(string path)
         {
+            path = path.ToLower();
             return (path.EndsWith(".png") || path.EndsWith(".jpg") || path.EndsWith(".gif") || path.EndsWith(".bmp"));
         }
 
+        /// <summary>
+        /// the methood check if the file is already exists in the output
+        /// directory and if it does it change his name
+        /// </summary>
+        /// <param name="pathFile">A string that represent the file path</param>
+        /// <param name="pathDir">A string that represent the output directory</param>
+        /// <returns>A string that represnt the name of the file</returns>
         private string SameName(string pathFile, string pathDir)
         {
             int counter = 0;
@@ -114,6 +165,5 @@ namespace ImageService.Modal
             }
             return fileNamePath;
         }
-
     }
 }

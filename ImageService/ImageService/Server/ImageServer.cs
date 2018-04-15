@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ImageService.Server
 {
     public class ImageServer
@@ -24,6 +25,13 @@ namespace ImageService.Server
         public event EventHandler<CommandRecievedEventArgs> CloseService;                         
         #endregion
 
+        /// <summary>
+        /// the constructor get Icontroller and Ilogging, take the two paths to directories
+        /// that we need to listen from the APP config,
+        /// create handlers for the directrories and notify the logging.
+        /// </summary>
+        /// <param name="controller">the controller that we paa to the handler</param>
+        /// <param name="logging">the logging incharge to notify the user about the process</param>
         public ImageServer(IImageController controller, ILoggingService logging)
         {
             this.m_controller = controller;
@@ -47,6 +55,9 @@ namespace ImageService.Server
             }
         }
 
+        /// <summary>
+        /// the method incharge to close the hanlers and the all service.
+        /// </summary>
         public void onCloseService()
         {
             CloseService?.Invoke(this, null);

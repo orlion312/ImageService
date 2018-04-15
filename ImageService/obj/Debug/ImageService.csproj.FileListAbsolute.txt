@@ -16,3 +16,6 @@ C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.Pr
 C:\Users\or\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.csproj.GenerateResource.Cache
 C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
 C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.pdb
+C:\Users\yarin\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe.config
+C:\Users\yarin\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.exe
+C:\Users\yarin\Documents\GitHub\ImageService\ImageService\obj\Debug\ImageService.pdb

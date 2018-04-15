@@ -41,6 +41,9 @@ public struct ServiceStatus
 
 namespace ImageService
 {
+    /// <summary>
+    /// ImageService class that henerits from ServiceBase Interface
+    /// </summary>
     public partial class ImageService : ServiceBase
     {
         private EventLog eventLog1;
@@ -53,7 +56,10 @@ namespace ImageService
         private readonly string outputDir;
         private readonly string handledDir;
 
-
+        /// <summary>
+        /// the constructor of the class, get an array of strings
+        /// </summary>
+        /// <param name="args">an array of strings that represent the command lines</param>
         public ImageService(string[] args) {
             InitializeComponent();
             string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
@@ -81,6 +87,10 @@ namespace ImageService
             eventLog1.Log = logName;
         }
 
+        /// <summary>
+        /// the method get an array of strings, manage what happens when the service start
+        /// </summary>
+        /// <param name="args">an array of strings that represent the command line</param>
         protected override void OnStart(string[] args) {
             IImageServiceModal imageServiceModal = new ImageServiceModal(outputDir, thumbnailSize);
             ImageController imageController = new ImageController(imageServiceModal);
@@ -112,14 +122,23 @@ namespace ImageService
              
         }
 
+
+        /// <summary>
+        /// the method WriteMessage function, wrrites to log.
+        /// </summary>
+        /// <param name="sender"> an object</param>
+        /// <param name="e" >MessageRecievedEventArgs obj</param>
         private void onMessage(object sender, MessageRecievedEventArgs e)
         {
             eventLog1.WriteEntry(e.Status + ":" + e.Message);
         }
 
+        /// <summary>
+        /// the method manage what happens when the service stop.
+        /// </summary>
         protected override void OnStop()
         {
-            logger.Log("On stop", Logging.Modal.MessageTypeEnum.INFO); ;
+            logger.Log("On stop", Logging.Modal.MessageTypeEnum.INFO);
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
