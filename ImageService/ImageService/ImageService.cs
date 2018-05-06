@@ -97,6 +97,7 @@ namespace ImageService
             logger = new LoggingService();
             logger.MessageRecieved += onMessage;
 
+            IDirectoryHandler handler = new DirectoyHandler(logger, imageController);
             m_imageServer = new ImageServer(imageController, logger);
 
             logger.Log("On start", Logging.Modal.MessageTypeEnum.INFO);
