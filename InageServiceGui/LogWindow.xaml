@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ImageServiceGui.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageServiceGui"
+        mc:Ignorable="d">
+
+
+        <StackPanel Margin="4,0,2.4,0" Orientation="Vertical" Height="287" Width="502">
+            <StackPanel Background="LightGray"></StackPanel>
+            <TextBlock x:Name="Logs" HorizontalAlignment="Left" Margin="216,0,0,0" TextWrapping="Wrap" FontSize="25" Text="Logs" FontWeight="Bold"  VerticalAlignment="Top"/>
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="248" Width="496">
+            <DataGrid.Columns>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+    </StackPanel>
+
+</UserControl>
