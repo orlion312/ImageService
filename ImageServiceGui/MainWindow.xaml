@@ -10,18 +10,6 @@
         xmlns:views="clr-namespace:ImageServiceGui"
         Title="MainWindow" Height="350" Width="525">
 
-
-
-    <Window.Resources>
-        <Style x:Key="TextDesign">
-            <Setter Property="TextBlock.FontSize" Value="18" />
-            <Setter Property="TextBlock.FontWeight" Value="Bold" />
-        </Style>
-        <Style x:Key="Title">
-            <Setter Property="TextBlock.FontSize" Value="25" />
-            <Setter Property="TextBlock.FontWeight" Value="Bold" />
-        </Style>
-    </Window.Resources>
     <Grid>
         <TabControl>
             <TabItem Header="Settings">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImageServiceGui.Model;
+using ImageServiceGui.VM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,12 @@ namespace ImageServiceGui
     /// </summary>
     public partial class SettingsWindow : UserControl
     {
+        private VM_Settings m_VM;
         public SettingsWindow()
         {
             InitializeComponent();
+            m_VM = new VM_Settings();
+            DataContext = m_VM;
         }
     }
 }

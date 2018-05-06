@@ -6,25 +6,39 @@
         xmlns:local="clr-namespace:ImageServiceGui"
         mc:Ignorable="d">
     <UserControl.Resources>
-        
+        <Style x:Key="TextDesign">
+            <Setter Property="TextBlock.FontSize" Value="17" />
+            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="Title">
+            <Setter Property="TextBlock.FontSize" Value="25" />
+            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+        </Style>
     </UserControl.Resources>
- 
-    <Grid>
-        <Grid Background="LightGray"></Grid>
-        <Button x:Name="Remove" Content="Remove" HorizontalAlignment="Left" Margin="-1,150,0,0" VerticalAlignment="Top" Width="513" RenderTransformOrigin="0.5,0.5">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.01"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <TextBlock x:Name="Settings" HorizontalAlignment="Left" Margin="210,0,0,0" TextWrapping="Wrap" FontSize="25" Text="Settings" FontWeight="Bold"  VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,35,0,0" TextWrapping="Wrap" FontSize="17" Text="Output Directory:" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" FontSize="17" Text="Source Name:" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" FontSize="17" Text="Log Name:" FontWeight="Bold" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" FontSize="17" Text="Thumbnail Size:" FontWeight="Bold" VerticalAlignment="Top"/>
+    <StackPanel>
+        <StackPanel Background="LightGray"></StackPanel>
+        <Label x:Name="Settings" HorizontalAlignment="Left" Margin="210,0,0,0" Style="{StaticResource Title}"  VerticalAlignment="Top">Settings</Label>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+           
+         
+         <TextBlock Grid.Row="0"  x:Name="textBlock"  HorizontalAlignment="Left"  Text="Output Directory:" Style="{StaticResource TextDesign}"  VerticalAlignment="Top"/>
+         <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_OutputDir}"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="textBlock1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Source Name:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log Name:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" x:Name="textBlock3" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Thumbnail Size:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
     </Grid>
+        <Button Margin="0,15,0,0" Height="25" HorizontalAlignment="Stretch">Remove</Button>
+        <ListBox Height="Auto" ItemsSource="{Binding VM_Handlers}"/>
+    </StackPanel>
 </UserControl>

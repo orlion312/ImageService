@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\or\Documents\GitHub\ImageService\InageServiceGui\obj\Debug\
+C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\
 ImageServiceGui
 none
 false
 DEBUG;TRACE
-C:\Users\or\Documents\GitHub\ImageService\InageServiceGui\App.xaml
+C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\App.xaml
 3-1814781635
 
 17-1174424108
-69303458201
+70-1166361622
 MainWindow.xaml;LogWindow.xaml;SettingsWindow.xaml;
 
-False
+True
 
