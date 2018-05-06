@@ -1,0 +1,41 @@
+﻿<Window x:Class="ImageServiceGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ImageServiceGui="clr-namespace:ImageServiceGui"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:e="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageServiceGui"
+        mc:Ignorable="d"
+        xmlns:views="clr-namespace:ImageServiceGui"
+        Title="MainWindow" Height="350" Width="525">
+
+
+
+    <Window.Resources>
+        <Style x:Key="TextDesign">
+            <Setter Property="TextBlock.FontSize" Value="18" />
+            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+        </Style>
+        <Style x:Key="Title">
+            <Setter Property="TextBlock.FontSize" Value="25" />
+            <Setter Property="TextBlock.FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Settings">
+                <Grid Background="LightGray">
+                    <local:SettingsWindow/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Logs">
+                <Grid Background="LightGray">
+                    <local:LogWindow></local:LogWindow>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
