@@ -31,9 +31,6 @@ C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\ImageService
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\ImageServiceGui_MarkupCompile.lref
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\ImageServiceGui.exe
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\ImageServiceGui.pdb
-C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
-C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
-C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Newtonsoft.Json.dll
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.Mvvm.xml
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.xml

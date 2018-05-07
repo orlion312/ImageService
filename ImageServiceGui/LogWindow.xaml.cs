@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageServiceGui.VM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace ImageServiceGui
     /// </summary>
     public partial class LogWindow : UserControl
     {
+        VM_Log m_VM;
         public LogWindow()
         {
             InitializeComponent();
+            m_VM = new VM_Log();
+            DataContext = m_VM;
         }
     }
 }

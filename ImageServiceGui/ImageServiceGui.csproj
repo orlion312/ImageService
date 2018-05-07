@@ -83,6 +83,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client\Client.cs" />
+    <Compile Include="Client\ITelnetClient.cs" />
     <Compile Include="LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +95,7 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VM\LogsColor.cs" />
     <Compile Include="VM\VM_Log.cs" />
     <Compile Include="VM\VM_Settings.cs" />
     <Page Include="MainWindow.xaml">

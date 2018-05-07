@@ -9,14 +9,12 @@
 
         <StackPanel Margin="4,0,2.4,0" Orientation="Vertical" Height="287" Width="502">
             <StackPanel Background="LightGray"></StackPanel>
-            <TextBlock x:Name="Logs" HorizontalAlignment="Left" Margin="216,0,0,0" TextWrapping="Wrap" FontSize="25" Text="Logs" FontWeight="Bold"  VerticalAlignment="Top"/>
-            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="248" Width="496">
+        <Label Content="Logs" HorizontalAlignment="Left" Margin="216,0,0,0"  FontSize="25" FontWeight="Bold"  VerticalAlignment="Top"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="248" Width="496">
             <DataGrid.Columns>
-
+                <DataGridTextColumn Header="Message" Width="*" IsReadOnly="True" Binding="{Binding Path=Message}" />
             </DataGrid.Columns>
         </DataGrid>
-
-
 
     </StackPanel>
 
