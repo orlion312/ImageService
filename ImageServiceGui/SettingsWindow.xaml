@@ -31,12 +31,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
            
-         
-         <TextBlock Grid.Row="0"  x:Name="textBlock"  HorizontalAlignment="Left"  Text="Output Directory:" Style="{StaticResource TextDesign}"  VerticalAlignment="Top"/>
-         <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_OutputDir}"></TextBlock>
+            <TextBlock Grid.Row="0"  x:Name="textBlock"  HorizontalAlignment="Left"  Text="Output Directory:" Style="{StaticResource TextDesign}"  VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_OutputDir}"></TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" x:Name="textBlock1" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Source Name:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_LogName}"></TextBlock>
             <TextBlock Grid.Row="2" Grid.Column="0" x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Log Name:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_SourceName}"></TextBlock>
             <TextBlock Grid.Row="3" Grid.Column="0" x:Name="textBlock3" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Thumbnail Size:" Style="{StaticResource TextDesign}" VerticalAlignment="Top"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource TextDesign}" Text="{Binding VM_ThumbnailSize}"></TextBlock>
     </Grid>
         <Button Margin="0,15,0,0" Height="25" HorizontalAlignment="Stretch">Remove</Button>
         <ListBox Height="Auto" ItemsSource="{Binding VM_Handlers}"/>

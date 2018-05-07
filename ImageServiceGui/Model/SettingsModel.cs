@@ -29,6 +29,7 @@ namespace ImageServiceGui.Model
             m_sourceName = "s";
             m_logName = "Or";
             ThumbnailSize = "12";
+            m_handlers = new ObservableCollection<string>();
     }
 
         string ISettingsModel.OutputDirectory
