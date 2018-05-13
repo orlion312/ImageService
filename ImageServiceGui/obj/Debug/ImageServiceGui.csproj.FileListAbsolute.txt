@@ -41,3 +41,6 @@ C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\SettingsWind
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\ImageServiceGui.g.resources
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\ImageServiceGui.Properties.Resources.resources
 C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\obj\Debug\ImageServiceGui.csproj.GenerateResource.Cache
+C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.Mvvm.Desktop.dll
+C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.Mvvm.dll
+C:\Users\or\Documents\GitHub\ImageService\ImageServiceGui\bin\Debug\Microsoft.Practices.Prism.SharedInterfaces.dll
