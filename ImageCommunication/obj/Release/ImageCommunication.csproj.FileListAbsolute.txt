@@ -1,0 +1,10 @@
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\bin\Release\ImageCommunication.exe.config
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\bin\Release\ImageCommunication.exe
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\bin\Release\ImageCommunication.pdb
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\bin\Release\Newtonsoft.Json.dll
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\bin\Release\Newtonsoft.Json.xml
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\obj\Release\ImageCommunication.csprojResolveAssemblyReference.cache
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\obj\Release\ImageCommunication.csproj.CoreCompileInputs.cache
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\obj\Release\ImageCommunication.csproj.CopyComplete
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\obj\Release\ImageCommunication.exe
+C:\Users\yarin\Desktop\ImageService\ImageCommunication\obj\Release\ImageCommunication.pdb

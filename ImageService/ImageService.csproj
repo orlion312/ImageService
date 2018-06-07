@@ -39,7 +39,6 @@
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -56,17 +55,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageService.Logging\Modal\MessageRecievedEventArgs.cs" />
+    <Compile Include="ImageService\Commands\CloseCommand.cs" />
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
-    <Compile Include="ImageService\ImageService.cs">
+    <Compile Include="ImageService\Commands\LastLogCommand.cs" />
+    <Compile Include="ImageService\Commands\LogCommand.cs" />
+    <Compile Include="ImageService\ImageService1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ImageService\ImageService.Designer.cs">
-      <DependentUpon>ImageService.cs</DependentUpon>
+    <Compile Include="ImageService\ImageService1.Designer.cs">
+      <DependentUpon>ImageService1.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageService.Infrastructure\Enums\CommandEnum.cs" />
     <Compile Include="ImageService.Logging\ILoggingService.cs" />
     <Compile Include="ImageService.Logging\LoggingService.cs" />
-    <Compile Include="ImageService.Logging\Modal\MessageRecievedEventArgs.cs" />
     <Compile Include="ImageService.Logging\Modal\MessageTypeEnum.cs" />
     <Compile Include="ImageService\Commands\ICommand.cs" />
     <Compile Include="ImageService\Commands\NewFileCommand.cs" />
@@ -93,8 +95,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ImageService\ImageService.resx">
-      <DependentUpon>ImageService.cs</DependentUpon>
+    <EmbeddedResource Include="ImageService\ImageService1.resx">
+      <DependentUpon>ImageService1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
@@ -102,6 +104,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageCommunication\ImageCommunication.csproj">
+      <Project>{52d2ee3b-4b61-4e97-8d63-1197db10b7af}</Project>
+      <Name>ImageCommunication</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,19 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ImageServiceGui"
+        xmlns:local="clr-namespace:ImageServiceGui.VM"
         mc:Ignorable="d">
+    <UserControl.Resources>
+        <local:LogsColor x:Key="LogsColor"/>
+        <Style x:Key="Title">
+            <Setter Property="TextBlock.FontSize" Value="25" />
+            <Setter Property="TextBlock.FontWeight" Value="ExtraBold" />
+            <Setter Property="TextBlock.Foreground" Value="{Binding ColorTitle}"/>
+        </Style>
+    </UserControl.Resources>
 
-
-        <StackPanel Margin="4,0,2.4,0" Orientation="Vertical" Height="287" Width="502">
-            <StackPanel Background="LightGray"></StackPanel>
-        <Label Content="Logs" HorizontalAlignment="Left" Margin="216,0,0,0"  FontSize="25" FontWeight="Bold"  VerticalAlignment="Top"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Height="248" Width="496">
+    <DockPanel ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="-1,0,0,10">
+        <Label Content="Logs" HorizontalAlignment="Center" Style="{StaticResource Title}" RenderTransformOrigin="2.634,0.921" FontFamily="Narkisim" DockPanel.Dock="Top"/>
+        <DataGrid x:Name="logs" 
+                  ItemsSource="{Binding VM_LogsList}" IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Message" Width="*" IsReadOnly="True" Binding="{Binding Path=Message}" />
+                <DataGridTextColumn Header="Type" Width="Auto" IsReadOnly="True" Binding="{Binding Path= Status}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Background" Value="{Binding Path= Status, Converter={StaticResource LogsColor}}"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Message" Width="*" IsReadOnly="True" Binding="{Binding Path= Message}" />
             </DataGrid.Columns>
         </DataGrid>
-
-    </StackPanel>
-
+    </DockPanel>
 </UserControl>
+

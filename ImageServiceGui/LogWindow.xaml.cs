@@ -1,4 +1,5 @@
-﻿using ImageServiceGui.VM;
+﻿using ImageServiceGui.Model;
+using ImageServiceGui.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;

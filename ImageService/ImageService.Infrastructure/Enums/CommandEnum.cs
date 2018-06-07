@@ -11,6 +11,7 @@ namespace ImageService.Infrastructure.Enums
         NewFileCommand,
         CloseCommand,
         GetConfigCommand,
-        CloseHandler
+        LastLogCommand,
+        LogCommand
     }
 }

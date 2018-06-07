@@ -1,0 +1,9 @@
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\ImageServiceGui.csprojResolveAssemblyReference.cache
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\ImageServiceGui.csproj.ResolveComReference.cache
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\MainWindow.g.cs
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\LogWindow.g.cs
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\SettingsWindow.g.cs
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\App.g.cs
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\ImageServiceGui_MarkupCompile.cache
+C:\Users\yarin\Desktop\ImageService\ImageServiceGui\obj\Release\ImageServiceGui_MarkupCompile.lref

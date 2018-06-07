@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using System.Configuration;
 
 namespace ImageService.Modal
 {

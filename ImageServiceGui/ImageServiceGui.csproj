@@ -64,6 +64,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,20 +84,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Client\Client.cs" />
-    <Compile Include="Client\ITelnetClient.cs" />
     <Compile Include="LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ILogModel.cs" />
+    <Compile Include="Model\IMainWindowModel.cs" />
     <Compile Include="Model\ISettingsModel.cs" />
     <Compile Include="Model\LogModel.cs" />
+    <Compile Include="Model\MainWindowModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="VM\LogsColor.cs" />
     <Compile Include="VM\VM_Log.cs" />
+    <Compile Include="VM\VM_MainWindow.cs" />
     <Compile Include="VM\VM_Settings.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +180,16 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImageCommunication\ImageCommunication.csproj">
+      <Project>{52d2ee3b-4b61-4e97-8d63-1197db10b7af}</Project>
+      <Name>ImageCommunication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageService\ImageService.csproj">
+      <Project>{69330F8D-90C1-4957-ADD8-CCD7424425A9}</Project>
+      <Name>ImageService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

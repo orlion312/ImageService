@@ -14,8 +14,14 @@ namespace ImageService
         /// </summary>
         static void Main(string[] args)
         {
-            ServiceBase[] ServicesToRun = new ServiceBase[] { new ImageService(args) };
-            ServiceBase.Run(ServicesToRun);  
+            //ImageService1 image = new ImageService1();
+            //image.onDebug();
+            //System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite);
+            ServiceBase[] ServicesToRun = new ServiceBase[]
+            {
+                new ImageService1()
+            };
+            ServiceBase.Run(ServicesToRun);
         }
     }
 }

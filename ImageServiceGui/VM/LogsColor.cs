@@ -11,6 +11,14 @@ namespace ImageServiceGui.VM
 {
     class LogsColor : IValueConverter
     {
+        /// <summary>
+        /// Converts the color of the status column to uniqe color for each status.
+        /// </summary>
+        /// <param name="value"> The status we want to change the color.</param>
+        /// <param name="targetType">The target type.</param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns>The color we change. </returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if(targetType.Name != "Brush")

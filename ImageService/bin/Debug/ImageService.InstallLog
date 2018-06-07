@@ -134,3 +134,25 @@ Affected parameters are:
    logtoconsole = 
    assemblypath = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.exe
    logfile = C:\Users\or\Documents\GitHub\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+Uninstalling assembly 'C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+   assemblypath = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe
+Removing EventLog source ImageService.
+Service ImageService is being removed from the system...
+Service ImageService was successfully removed from the system.
+Attempt to stop service ImageService.
+Installing assembly 'C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+   assemblypath = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe
+Installing service ImageService...
+Service ImageService has been successfully installed.
+Creating EventLog source ImageService in log Application...
+Committing assembly 'C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.InstallLog
+   assemblypath = C:\Users\yarin\Desktop\ImageService\ImageService\bin\Debug\ImageService.exe

@@ -1,0 +1,16 @@
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageService.exe.config
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageService.exe
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageService.pdb
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageCommunication.exe
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\Newtonsoft.Json.dll
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageCommunication.pdb
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\ImageCommunication.exe.config
+C:\Users\yarin\Desktop\ImageService\ImageService\bin\Release\Newtonsoft.Json.xml
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.csprojResolveAssemblyReference.cache
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.ImageService1.resources
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.ProjectInstaller.resources
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.csproj.GenerateResource.cache
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.csproj.CoreCompileInputs.cache
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.csproj.CopyComplete
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.exe
+C:\Users\yarin\Desktop\ImageService\ImageService\obj\Release\ImageService.pdb

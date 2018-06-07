@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImageServiceGui.Model;
+using ImageServiceGui.VM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +23,16 @@ namespace ImageServiceGui
     public partial class MainWindow : Window
     {
         private SettingsWindow st;
+        private LogWindow lg;
+        VM_MainWindow m_VM;
+
         public MainWindow()
         {
-            
             InitializeComponent();
-            st = new SettingsWindow();
+            m_VM = new VM_MainWindow();
+            //st = new SettingsWindow();
+            //lg = new LogWindow();
+            DataContext = m_VM;
         }
     }
 }

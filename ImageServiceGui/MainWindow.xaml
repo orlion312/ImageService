@@ -11,15 +11,15 @@
         Title="MainWindow" Height="350" Width="525">
 
     <Grid>
+        <Canvas Background="{Binding IsConnected}"/>
         <TabControl>
             <TabItem Header="Settings">
-                <Grid Background="LightGray">
+                <Grid Background="{Binding IsConnected}">
                     <local:SettingsWindow/>
-
                 </Grid>
             </TabItem>
             <TabItem Header="Logs">
-                <Grid Background="LightGray">
+                <Grid Background="{Binding IsConnected}">
                     <local:LogWindow></local:LogWindow>
                 </Grid>
             </TabItem>

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Prism.Commands;
 using ImageServiceGui.Model;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using ImageService.Logging.Modal;
 
 namespace ImageServiceGui.VM
 {
@@ -14,21 +14,41 @@ namespace ImageServiceGui.VM
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ILogModel model;
-
+        ObservableCollection<MessageRecievedEventArgs> logs;
+        /// <summary>
+        /// Property of the list of logs.
+        /// </summary>
+        public ObservableCollection<MessageRecievedEventArgs> VM_LogsList
+        {
+            get
+            {
+                return model.LogsList;
+            }
+            set
+            {
+                logs = value;
+            }
+        }
+        /// <summary>
+        /// C'tor.
+        /// </summary>
         public VM_Log()
         {
-            model = new LogModel();
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
-            {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
-            };
+            this.model = new LogModel();
+
+            model.PropertyChanged +=
+                delegate (object sender, PropertyChangedEventArgs e)
+                {
+                    NotifyPropertyChanged("VM_Logs");
+                };
         }
-
-
-        private void NotifyPropertyChanged(string v)
+        public string ColorTitle
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(v));
+            get { return model.Color(); }
+        }
+        public void NotifyPropertyChanged(string propname)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propname));
         }
     }
 }
