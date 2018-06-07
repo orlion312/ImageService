@@ -1,0 +1,42 @@
+﻿@model ImageServiceWeb.Models.ConfigModel
+
+@{
+    ViewBag.Title = "Config";
+}
+
+
+<h2>Config</h2>
+
+<ul>
+    <li>
+        <b>@Html.DisplayNameFor(model => model.m_outputDirectory)</b>
+        @Html.DisplayName(Model.m_outputDirectory)
+    </li>
+    <li>
+        <b>@Html.DisplayNameFor(model => model.m_sourceName)</b>
+        @Html.DisplayName(Model.m_sourceName)
+    </li>
+    <li>
+        <b>@Html.DisplayNameFor(model => model.m_logName)</b>
+        @Html.DisplayName(Model.m_logName)
+    </li>
+    <li>
+        <b>@Html.DisplayNameFor(model => model.m_ThumbnailSize)</b>
+        @Html.DisplayName(Model.m_ThumbnailSize)
+    </li>
+    <li>
+        <b>@Html.DisplayNameFor(model => model.m_handlers)</b>
+        <table class="table">
+            @foreach (string handler in Model.m_handlers)
+            {
+            <tr>
+                <td>
+                     @Html.ActionLink(@handler,"ConfigRemove", "Home", new { dir= handler}, null)
+                </td>
+            </tr>
+            }
+        </table>
+    </li>
+</ul>
+
+<br />

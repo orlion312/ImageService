@@ -19,6 +19,7 @@ namespace ImageService.Server
     public class ImageServer
     {
         #region Members
+        private int imagesCounter;
         private IImageController m_controller;
         private ILoggingService m_logging;
         private ITcpServer m_tcpServer;
@@ -37,8 +38,9 @@ namespace ImageService.Server
         /// </summary>
         /// <param name="controller">the controller that we paa to the handler</param>
         /// <param name="logging">the logging incharge to notify the user about the process</param>
-        public ImageServer(IImageController controller, ILoggingService logging)
+        public ImageServer(IImageController controller, ILoggingService logging, int imagesCounter)
         {
+            this.imagesCounter = imagesCounter;
             this.handlers = new Dictionary<string, IDirectoryHandler>();
             this.m_controller = controller;
             this.m_logging = logging;

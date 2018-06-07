@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace ImageService.Modal
 {
@@ -166,6 +167,26 @@ namespace ImageService.Modal
                     fileNamePath = pathDir + "\\" + Path.GetFileNameWithoutExtension(pathFile) + "(" + counter.ToString() + ")" + Path.GetExtension(pathFile);
             }
             return fileNamePath;
+        }
+
+        public int CountImages()
+        {
+            int numImages = 0;
+            string[] yearDirs = Directory.GetDirectories(m_OutputFolder);
+            foreach(string dir in yearDirs)
+            {
+                if(dir.Contains("Thumbnails"))
+                {
+                    continue;
+                }
+
+                string[] monthDirs= Directory.GetDirectories(dir);
+                foreach(string subDir in monthDirs)
+                {
+                    numImages += Directory.GetFiles(subDir).Length;
+                }
+            }
+            return numImages;
         }
     }
 }

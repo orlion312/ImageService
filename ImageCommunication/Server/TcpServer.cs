@@ -17,6 +17,7 @@ namespace ImageCommunication
         private int port;
         private string ip;
         private List<IClientHandler> clientList;
+
         #region
         public TcpListener Listener { get; set; }
         #endregion

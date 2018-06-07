@@ -28,7 +28,6 @@ namespace ImageServiceGui.Model
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("settings model");
                 m_client = TcpClientChannel.ClientInstance;
                 m_client.DataReceived += GetMessageFromClient;
 

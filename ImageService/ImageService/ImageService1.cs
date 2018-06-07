@@ -95,11 +95,12 @@ namespace ImageService
         /// <param name="args">an array of strings that represent the command line</param>
         protected override void OnStart(string[] args) {
             IImageServiceModal imageServiceModal = new ImageServiceModal(outputDir, thumbnailSize);
+            int counterImages = imageServiceModal.CountImages();
             logger = new LoggingService();
             this.imageController = new ImageController(imageServiceModal, logger);
             logger.MessageRecieved += onMessage;
 
-            m_imageServer = new ImageServer(imageController, logger);
+            m_imageServer = new ImageServer(imageController, logger, counterImages);
             //m_imageServer.ReceivedData += messageRecieved;
 
             logger.Log("On start", Logging.Modal.MessageTypeEnum.INFO);

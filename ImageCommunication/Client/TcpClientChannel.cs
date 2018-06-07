@@ -51,6 +51,7 @@ namespace ImageCommunication
                 this.m_reader = new BinaryReader(m_streamer, Encoding.ASCII);
                 this.m_writer = new BinaryWriter(m_streamer, Encoding.ASCII);
                 Console.Write("You connected successfully");
+                System.Diagnostics.Debug.WriteLine("You connected successfully");
                 Read();
             }
             catch (Exception e)
@@ -103,6 +104,7 @@ namespace ImageCommunication
                 Console.Write(e.ToString());
             }
         }
+
         public bool Connect()
         {
             if(client == null)
