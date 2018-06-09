@@ -1,7 +1,35 @@
-﻿
+﻿@model ImageServiceWeb.Models.ImageWebModel
 @{
     ViewBag.Title = "ImageWeb";
 }
 
 <h2>ImageWeb</h2>
-
+<p><b>@Html.DisplayNameFor(model => model.m_status)</b> @Html.DisplayName(Model.m_status)</p>
+<p><b>@Html.DisplayNameFor(model => model.imageCount)</b> @Html.DisplayName(Model.imageCount)</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.yarin.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.yarin.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.yarin.ID)
+        </th>
+    </tr>
+    @foreach (var student in Model.student)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => student.ID)
+            </td>
+        </tr>
+    }
+</table>

@@ -9,15 +9,16 @@ using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
 using Newtonsoft.Json.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ImageServiceWeb.Models
 {
     public class ConfigModel
     {
 
-        private ITcpClient m_client;
+        public ITcpClient m_client;
 
 
         public ConfigModel()
@@ -26,16 +27,13 @@ namespace ImageServiceWeb.Models
             m_logName = "";
             m_sourceName = "";
             m_ThumbnailSize = "";
+            m_handlers = new ObservableCollection<string>();
             try
             {
                 m_client = TcpClientChannel.ClientInstance;
+                isDelete = false;
                 m_client.DataReceived += GetMessageFromClient;
-
-                m_handlers = new ObservableCollection<string>();
-                m_handlers.CollectionChanged += (s, e) => NotifyPropertyChanged("Handlers");
-
                 m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null).ToJson());
-                System.Diagnostics.Debug.WriteLine("settings model");
 
             }
             catch (Exception e)
@@ -68,72 +66,8 @@ namespace ImageServiceWeb.Models
         [DataType(DataType.Text)]
         [Display(Name = "Handlers: ")]
         public ObservableCollection<string> m_handlers { get; set; }        //string m_OutputDirectory
-        //string IConfigModel.OutputDirectory
-        //{
-        //    get
-        //    {
-        //        return this.m_outputDirectory;
-        //    }
-        //    set
-        //    {
-        //        this.m_outputDirectory = value;
-        //        this.NotifyPropertyChanged("OutputDirectory");
-        //    }
-        //}
 
-
-        //string IConfigModel.SourceName
-        //{
-        //    get
-        //    {
-        //        return this.m_sourceName;
-        //    }
-        //    set
-        //    {
-        //        this.m_sourceName = value;
-        //        this.NotifyPropertyChanged("SourceName");
-        //    }
-        //}
-
-
-        //string IConfigModel.LogName
-        //{
-        //    get
-        //    {
-        //        return this.m_logName;
-        //    }
-        //    set
-        //    {
-        //        this.m_logName = value;
-        //        this.NotifyPropertyChanged("LogName");
-        //    }
-        //}
-
-        //string IConfigModel.ThumbnailSize
-        //{
-        //    get
-        //    {
-        //        return m_ThumbnailSize;
-        //    }
-        //    set
-        //    {
-        //        this.m_ThumbnailSize = value;
-        //        this.NotifyPropertyChanged("ThumbnailSize");
-        //    }
-        //}
-
-        //ObservableCollection<string> IConfigModel.Handlers
-        //{
-        //    get
-        //    {
-        //        return this.m_handlers;
-        //    }
-        //    set
-        //    {
-        //        this.m_handlers = value;
-        //        this.NotifyPropertyChanged("Handlers");
-        //    }
-        //}
+        public bool isDelete;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -162,9 +96,8 @@ namespace ImageServiceWeb.Models
                 string[] handlersArray = ((string)json["Handler"]).Split(';');
                 for (int j = 0; j < handlersArray.Length; ++j)
                 {
-                    ////m_handlers.Add(handlersArray[j]);
-                    //App.Current.Dispatcher.Invoke(() => m_handlers.Add(handlersArray[j]));
-                    m_handlers.Add(handlersArray[j]);
+                    if(!String.IsNullOrEmpty(handlersArray[j]))
+                        m_handlers.Add(handlersArray[j]);
                 }
                 System.Diagnostics.Debug.WriteLine("Done!");
             }
@@ -172,7 +105,7 @@ namespace ImageServiceWeb.Models
             {
                 if ((ITcpClient)sender == m_client)
                 {
-                    //App.Current.Dispatcher.Invoke(() => this.m_handlers.Remove(data.Message));
+                    isDelete = true;
                     this.m_handlers.Remove(data.Message);
                 }
                 else
@@ -186,11 +119,13 @@ namespace ImageServiceWeb.Models
         {
             try
             {
+                isDelete = false;
                 string[] args = new string[1];
                 args[0] = selected;
                 m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, args, null).ToJson());
                 return 1;
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return 0;
             }

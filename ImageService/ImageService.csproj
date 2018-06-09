@@ -60,6 +60,7 @@
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
     <Compile Include="ImageService\Commands\LastLogCommand.cs" />
     <Compile Include="ImageService\Commands\LogCommand.cs" />
+    <Compile Include="ImageService\Commands\WebStatusCommand.cs" />
     <Compile Include="ImageService\ImageService1.cs">
       <SubType>Component</SubType>
     </Compile>

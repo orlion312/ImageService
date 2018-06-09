@@ -6,21 +6,22 @@
 <p>
     @ViewBag.Test
 </p>
-<button type="button" id="OK" style="margin:10px" >OK</button>
-<button type="button" id="Cancel" style="margin:10px">Cancel</button>
 
-@*<script type="text/javascript">
+<button type="button" id="OK">OK</button>
+<button type="button" id="Cancel">Cancel</button>
+
+<script type="text/javascript">
     document.getElementById("OK").onclick = function () {
         document.getElementById("Cancel").disabled = true;
         document.getElementById("OK").disabled = true;
-        location.href = "DeleteOK";
+        location.href = "HandlerDelete";
     };
-</script>
+ </script>
 
 <script type="text/javascript">
-    document.getElementById("Cancel").onclick = function () {
+    document.getElementById("Cancel").onclick = function aa() {
         document.getElementById("Cancel").disabled = true;
         document.getElementById("OK").disabled = true;
         location.href = "DeleteCancel";
     };
-</script>*@
+</script>

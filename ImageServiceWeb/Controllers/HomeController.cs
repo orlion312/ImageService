@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,17 +10,18 @@ namespace ImageServiceWeb.Controllers
 {
     public class HomeController : Controller
     {
-        static readonly ConfigModel config = new ConfigModel();
-        //private string dir = "";
+        static ConfigModel config = new ConfigModel();
+        static readonly LogsModel logs = new LogsModel();
+        static string handler="";
 
         public ActionResult ImageWeb()
         {
-            return View();
+            return View(new ImageWebModel());
         }
 
         public ActionResult Logs()
         {
-            return View();
+            return View(logs);
         }
 
         public ActionResult Index()
@@ -40,19 +42,20 @@ namespace ImageServiceWeb.Controllers
         public ActionResult ConfigRemove(string dir)
         {
             ViewBag.Test = dir;
-            //ViewBag.RemoveHandler = new Func<string, ActionResult>(DeleteOK); 
+            handler = dir;
             return View();
         }
 
-        //public ActionResult DeleteOK(string dir)
-        //{
-        //    config.RemoveHandler(dir);
-        //    return RedirectToAction("Config");
-        //}
+        public ActionResult HandlerDelete(string dir)
+        {
+            config.RemoveHandler(handler);
+            SpinWait.SpinUntil( () => config.isDelete);
+            return RedirectToAction("Config","Home");
+        }
 
-        //public ActionResult DeleteCancel()
-        //{
-        //    return RedirectToAction("Config");
-        //}
+        public ActionResult DeleteCancel()
+        {
+            return RedirectToAction("Config");
+        }
     }
 }

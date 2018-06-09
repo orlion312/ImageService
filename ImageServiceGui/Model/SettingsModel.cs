@@ -10,8 +10,6 @@ using ImageCommunication;
 using ImageService.Modal;
 using ImageService.Infrastructure.Enums;
 using ImageCommunication.Events;
-using System.Windows.Data;
-using System.Windows.Threading;
 
 namespace ImageServiceGui.Model
 {

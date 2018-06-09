@@ -1,7 +1,59 @@
-﻿
+﻿@model ImageServiceWeb.Models.LogsModel
+
 @{
     ViewBag.Title = "Logs";
 }
 
 <h2>Logs</h2>
 
+<p>Write the types to filter the logs:</p>
+<input type="text" id="filterfield" onkeyup="filter()" placeholder="Search for logs.."/>
+<br />
+<br />
+<table id="table" style="width:100%">
+    <tr>
+        <th>
+            <b>Status</b>
+        </th>
+        <th>
+            <b>Message</b>
+        </th>
+    </tr>
+    @foreach (var log in Model.LogsList)
+    {
+        <tr>
+            @if (log != null)
+            {
+                <td>
+                    @log.Item1
+                </td>
+                <td>
+                    @log.Item2
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    function filter() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("filterfield");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
