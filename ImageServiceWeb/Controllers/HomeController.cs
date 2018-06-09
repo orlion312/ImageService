@@ -13,10 +13,12 @@ namespace ImageServiceWeb.Controllers
         static ConfigModel config = new ConfigModel();
         static readonly LogsModel logs = new LogsModel();
         static string handler="";
+        static ImageWebModel imageWeb = new ImageWebModel();
 
         public ActionResult ImageWeb()
         {
-            return View(new ImageWebModel());
+            imageWeb.sendCommand();
+            return View(imageWeb);
         }
 
         public ActionResult Logs()
@@ -24,13 +26,9 @@ namespace ImageServiceWeb.Controllers
             return View(logs);
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Config()
         {
+            config.sendCommand();
             return View(config);
         }
 
@@ -51,11 +49,6 @@ namespace ImageServiceWeb.Controllers
             config.RemoveHandler(handler);
             SpinWait.SpinUntil( () => config.isDelete);
             return RedirectToAction("Config","Home");
-        }
-
-        public ActionResult DeleteCancel()
-        {
-            return RedirectToAction("Config");
         }
     }
 }

@@ -114,8 +114,9 @@ namespace ImageService.Server
 
         public void closeHandler(string path)
         {
-            IDirectoryHandler directory = handlers[path];
+            IDirectoryHandler directory = this.handlers[path];
             directory.onCloseService(this, null);
+            CloseService -= directory.onCloseService;
             handlers.Remove(path);
         }
     }

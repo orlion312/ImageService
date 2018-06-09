@@ -101,7 +101,7 @@ namespace ImageService.Controller.Handlers
         /// a method that get an object and a CommandRecievedEventArgs and close the service
         /// </summary>
         /// <param name="sender">an object yhat reoresent the ImageServer</param>
-        /// <param name="e">a CommandRecievedEventArgs</param>
+        /// <param name="e">a DirectoryCloseEventArgs</param>
         public void onCloseService(object sender, CommandRecievedEventArgs e)
         {
             ImageServer server = (ImageServer)sender;
@@ -113,7 +113,6 @@ namespace ImageService.Controller.Handlers
             bool result;
             string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out result);
             m_tcpServer.NotifyAll(s);
-            server.CloseService -= OnCommandRecieved;
         }
     }
 }

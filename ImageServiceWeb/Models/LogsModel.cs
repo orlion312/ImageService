@@ -29,7 +29,7 @@ namespace ImageServiceWeb.Models
 
         public LogsModel()
         {
-            LogsList = new ObservableCollection<Tuple<string, string>>();
+            initialize();
             try
             {
                 client = TcpClientChannel.ClientInstance;
@@ -45,6 +45,10 @@ namespace ImageServiceWeb.Models
 
         }
 
+        public void initialize()
+        {
+            LogsList = new ObservableCollection<Tuple<string, string>>();
+        }
 
         public void GetMessageFromClient(object sender, DataReceivedEventArgs data)
         {
@@ -74,7 +78,18 @@ namespace ImageServiceWeb.Models
                     }
                 }
             }
+        }
 
+        public void sendCommand()
+        {
+            if (client.Connect())
+            {
+                client.Send((new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, null)).ToJson());
+            } else
+            {
+
+                initialize();
+            }
         }
     }
 }

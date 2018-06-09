@@ -21,9 +21,9 @@ namespace ImageServiceWeb.Models
 
         public ImageWebModel()
         {
+            initialize();
             string path = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "App_Data", "StudentsDetails.txt");
             string[] lines = System.IO.File.ReadAllLines(path);
-            stop = false;
             string[] s = lines[0].Split(' ');
             string[] s1 = lines[1].Split(' ');
             students = new List<Student>()
@@ -37,9 +37,7 @@ namespace ImageServiceWeb.Models
             {
                 m_client = TcpClientChannel.ClientInstance;
                 m_client.DataReceived += GetMessageFromClient;
-
-                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.WebStatusCommand, null, null).ToJson());
-                SpinWait.SpinUntil(() => stop);
+                sendCommand();
             }
             catch (Exception e)
             {
@@ -47,6 +45,13 @@ namespace ImageServiceWeb.Models
                 imageCount = "0";
                 Console.Write(e.ToString());
             }
+        }
+
+        public void initialize()
+        {
+            stop = false;
+            m_status = "Offline";
+            imageCount = "";
         }
 
         [Required]
@@ -82,6 +87,20 @@ namespace ImageServiceWeb.Models
                 System.Diagnostics.Debug.WriteLine("Done!");
             }
             stop = true;
+        }
+
+        public void sendCommand()
+        {
+            if (m_client.Connect())
+            {
+                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.WebStatusCommand, null, null).ToJson());
+                SpinWait.SpinUntil(() => stop);
+
+            }
+            else
+            {
+                initialize();
+            }
         }
     }
 }

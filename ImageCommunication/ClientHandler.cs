@@ -72,9 +72,11 @@ namespace ImageCommunication
         public void Write(object sender, DataReceivedEventArgs data)
         {
             mut.WaitOne();
-
-            m_writer.Write(data.Message.Trim());
-            m_writer.Flush();
+            try
+            {
+                m_writer.Write(data.Message.Trim());
+                m_writer.Flush();
+            } catch { }
 
             mut.ReleaseMutex();
         }

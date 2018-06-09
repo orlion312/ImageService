@@ -23,23 +23,27 @@ namespace ImageServiceWeb.Models
 
         public ConfigModel()
         {
-            m_outputDirectory = "";
-            m_logName = "";
-            m_sourceName = "";
-            m_ThumbnailSize = "";
-            m_handlers = new ObservableCollection<string>();
+            initialize();
             try
             {
                 m_client = TcpClientChannel.ClientInstance;
                 isDelete = false;
                 m_client.DataReceived += GetMessageFromClient;
-                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null).ToJson());
-
+                sendCommand();
             }
             catch (Exception e)
             {
                 Console.Write(e.ToString());
             }
+        }
+
+        public void initialize()
+        {
+            m_outputDirectory = "";
+            m_logName = "";
+            m_sourceName = "";
+            m_ThumbnailSize = "";
+            m_handlers = new ObservableCollection<string>();
         }
 
         [Required]
@@ -93,6 +97,7 @@ namespace ImageServiceWeb.Models
                 m_sourceName = (string)json["SourceName"];
                 m_ThumbnailSize = (string)json["ThumbnailSize"];
                 m_logName = (string)json["LogName"];
+                m_handlers = new ObservableCollection<string>();
                 string[] handlersArray = ((string)json["Handler"]).Split(';');
                 for (int j = 0; j < handlersArray.Length; ++j)
                 {
@@ -128,6 +133,17 @@ namespace ImageServiceWeb.Models
             catch (Exception e)
             {
                 return 0;
+            }
+        }
+
+        public void sendCommand()
+        {
+            if (m_client.Connect())
+            {
+                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null).ToJson());
+            } else
+            {
+                initialize();
             }
         }
     }
