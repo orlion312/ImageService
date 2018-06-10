@@ -15,17 +15,20 @@ using System.Threading.Tasks;
 
 namespace ImageServiceWeb.Models
 {
+    //the model of the config
     public class ConfigModel
     {
 
         public ITcpClient m_client;
 
-
+        //the constructor of the class
         public ConfigModel()
         {
+            //initialize the parameters
             initialize();
             try
             {
+                //connect to the client
                 m_client = TcpClientChannel.ClientInstance;
                 isDelete = false;
                 m_client.DataReceived += GetMessageFromClient;
@@ -37,6 +40,7 @@ namespace ImageServiceWeb.Models
             }
         }
 
+        //the function initialize the parameters
         public void initialize()
         {
             m_outputDirectory = "";
@@ -75,7 +79,10 @@ namespace ImageServiceWeb.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+        /// <summary>
+        /// the function responsibole to notify if something was changed
+        /// </summary>
+        /// <param name="propname">the property that was changed</param>
         public void NotifyPropertyChanged(string propname)
         {
             if (this.PropertyChanged != null)
@@ -84,9 +91,15 @@ namespace ImageServiceWeb.Models
             }
         }
 
+        /// <summary>
+        /// the function get the message(the configs of the service and if hadler deleted) from the service
+        /// </summary>
+        /// <param name="sender">the object that sent the data</param>
+        /// <param name="data">the data that the model received</param>
         public void GetMessageFromClient(object sender, DataReceivedEventArgs data)
         {
             string message = data.Message;
+            //check if it's config, split the message to the parameters
             if (message.Contains("Config "))
             {
                 System.Diagnostics.Debug.WriteLine("Working on config...");
@@ -108,6 +121,7 @@ namespace ImageServiceWeb.Models
             }
             else
             {
+                //if it's handler to delete
                 if ((ITcpClient)sender == m_client)
                 {
                     isDelete = true;
@@ -120,30 +134,42 @@ namespace ImageServiceWeb.Models
             }
         }
 
-        public int RemoveHandler(string selected)
+        /// <summary>
+        /// the function remove the selected handler
+        /// </summary>
+        /// <param name="selected">a path that represent the selected handler</param>
+        public void RemoveHandler(string selected)
         {
-            try
-            {
-                isDelete = false;
-                string[] args = new string[1];
-                args[0] = selected;
-                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, args, null).ToJson());
-                return 1;
-            }
-            catch (Exception e)
-            {
-                return 0;
-            }
+            isDelete = false;
+            string[] args = new string[1];
+            args[0] = selected;
+            //send the command to remove the handler
+            m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, args, null).ToJson());
         }
 
+        //the function send the command to the service to get the data(status and photos number)
         public void sendCommand()
         {
-            if (m_client.Connect())
+            if (m_client != null)
             {
-                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null).ToJson());
+                //check if the client connect
+                if (m_client.Connect())
+                {
+                    m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, null).ToJson());
+                }
+                else
+                {
+                    initialize();
+                }
             } else
             {
-                initialize();
+                try
+                {
+                    m_client = TcpClientChannel.ClientInstance;
+                    isDelete = false;
+                    m_client.DataReceived += GetMessageFromClient;
+                    sendCommand();
+                } catch { }
             }
         }
     }

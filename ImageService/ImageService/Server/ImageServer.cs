@@ -73,13 +73,16 @@ namespace ImageService.Server
         /// </summary>
         public void onCloseService()
         {
+            CloseService?.Invoke(this, null);
             bool res;
             string[] arr = { "Service stopped" };
             string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out res);
-            this.m_tcpServer.NotifyAll(s);
-            CloseService?.Invoke(this, null);
         }
 
+        /// <summary>
+        /// the method get a message and write to the tcp server this message
+        /// </summary>
+        /// <param name="msg">the msg to write</param>
         public void Write(string msg)
         {
             DataReceivedEventArgs d = new DataReceivedEventArgs();
@@ -87,6 +90,11 @@ namespace ImageService.Server
             m_tcpServer.Send(this,d);
         }
 
+        /// <summary>
+        /// the method execute the commands that the client send
+        /// </summary>
+        /// <param name="sender">the object that sent the data</param> 
+        /// <param name="data">the data that received</param>
         public void ExecuteTcpServer(Object sender, DataReceivedEventArgs data)
         {
             try
@@ -112,6 +120,10 @@ namespace ImageService.Server
             }
         }
 
+        /// <summary>
+        /// the method get an handler and responsible to close the handler 
+        /// </summary>
+        /// <param name="path">a string that represent the handler</param>
         public void closeHandler(string path)
         {
             IDirectoryHandler directory = this.handlers[path];

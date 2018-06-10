@@ -14,6 +14,9 @@ using System.Windows.Data;
 
 namespace ImageServiceWeb.Models
 {
+    /// <summary>
+    /// the model of the logs
+    /// </summary>
     public class LogsModel
     {
         private ITcpClient client;
@@ -26,16 +29,20 @@ namespace ImageServiceWeb.Models
 
 
 
-
+        //the constructor
         public LogsModel()
         {
+            //initialize the parametres
             initialize();
             try
             {
+                //connect to the client
                 client = TcpClientChannel.ClientInstance;
                 client.DataReceived += GetMessageFromClient;
                 BindingOperations.EnableCollectionSynchronization(LogsList, new object());
                 LogsList.CollectionChanged += (s, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LogsList"));
+                
+                //send the command to get the logs
                 client.Send((new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, null)).ToJson());
             }
             catch (Exception e)
@@ -45,11 +52,17 @@ namespace ImageServiceWeb.Models
 
         }
 
+        //the function initialize the parameters of the logs
         public void initialize()
         {
             LogsList = new ObservableCollection<Tuple<string, string>>();
         }
 
+        /// <summary>
+        /// the function get the message(logs) from the service
+        /// </summary>
+        /// <param name="sender">the object that sent the data</param> 
+        /// <param name="data">the data that the model received- the logs</param>
         public void GetMessageFromClient(object sender, DataReceivedEventArgs data)
         {
             System.Diagnostics.Debug.WriteLine(data.Message);
@@ -66,6 +79,7 @@ namespace ImageServiceWeb.Models
                     {
                         try
                         {
+                            //split the log to type and message
                             JObject jObject = (JObject)JsonConvert.DeserializeObject(s);
                             int messageType = (int)jObject["Status"];
                             string msg = (string)jObject["Message"];
@@ -80,15 +94,23 @@ namespace ImageServiceWeb.Models
             }
         }
 
-        public void sendCommand()
+        public void tryConnect()
         {
-            if (client.Connect())
+            //check if the client connect
+            if (client == null)
             {
-                client.Send((new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, null)).ToJson());
-            } else
-            {
+                try
+                {
+                    //connect to the client
+                    client = TcpClientChannel.ClientInstance;
+                    client.DataReceived += GetMessageFromClient;
+                    BindingOperations.EnableCollectionSynchronization(LogsList, new object());
+                    LogsList.CollectionChanged += (s, e) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("LogsList"));
 
-                initialize();
+                    //send the command to get the logs
+                    client.Send((new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, null)).ToJson());
+                }
+                catch { }
             }
         }
     }

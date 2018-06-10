@@ -169,6 +169,10 @@ namespace ImageService.Modal
             return fileNamePath;
         }
 
+        /// <summary>
+        /// the method responsible to count the number of photos in the output folder
+        /// </summary>
+        /// <returns>an Integer that represent the number of photos</returns>
         public int CountImages()
         {
             int numImages = 0;

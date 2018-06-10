@@ -27,6 +27,10 @@ namespace ImageService.Modal
             RequestDirPath = path;
         }
 
+        /// <summary>
+        /// the method take the paraneters of the class, change them into json and return it
+        /// </summary>
+        /// <returns>a json that represent the all parameters</returns>
         public string ToJson()
         {
             try
@@ -42,6 +46,12 @@ namespace ImageService.Modal
             }
         }
 
+        /// <summary>
+        /// the method get a string, split it to the parameters,
+        /// convert it to CommandRecievedEventArgs object and return it.
+        /// </summary>
+        /// <param name="jStr">the string to split</param>
+        /// <returns>a CommandRecievedEventArgs object</returns>
         public static CommandRecievedEventArgs FromJson(string jStr)
         {
             try

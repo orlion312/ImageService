@@ -4,18 +4,22 @@
 }
 
 <h2>ImageWeb</h2>
+
+@*the service status and number of photos in the service*@
 <p><b>@Html.DisplayNameFor(model => model.m_status)</b> @Html.DisplayName(Model.m_status)</p>
 <p><b>@Html.DisplayNameFor(model => model.imageCount)</b> @Html.DisplayName(Model.imageCount)</p>
+
+@*show the table of the students*@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.yarin.FirstName)
+            @Html.DisplayNameFor(model => model.detailes.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.yarin.LastName)
+            @Html.DisplayNameFor(model => model.detailes.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.yarin.ID)
+            @Html.DisplayNameFor(model => model.detailes.ID)
         </th>
     </tr>
     @foreach (var student in Model.student)

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ImageServiceWeb.Controllers
 {
+    //the controller of the web
     public class HomeController : Controller
     {
         static ConfigModel config = new ConfigModel();
@@ -15,28 +16,34 @@ namespace ImageServiceWeb.Controllers
         static string handler="";
         static ImageWebModel imageWeb = new ImageWebModel();
 
+        //the method responsible for the ImageWeb page
         public ActionResult ImageWeb()
         {
             imageWeb.sendCommand();
             return View(imageWeb);
         }
 
+        //the method responsible for the logs page
         public ActionResult Logs()
         {
+            logs.tryConnect();
             return View(logs);
         }
 
+        //the method responsible for the config page
         public ActionResult Config()
         {
             config.sendCommand();
             return View(config);
         }
 
+        //the method responsible for the photos page
         public ActionResult Photos()
         {
             return View();
         }
 
+        //the method responsible for the hadler remove page
         public ActionResult ConfigRemove(string dir)
         {
             ViewBag.Test = dir;
@@ -44,9 +51,11 @@ namespace ImageServiceWeb.Controllers
             return View();
         }
 
+        //the method responsible for the delete the handler
         public ActionResult HandlerDelete(string dir)
         {
             config.RemoveHandler(handler);
+            //wait till we get an approve from the service
             SpinWait.SpinUntil( () => config.isDelete);
             return RedirectToAction("Config","Home");
         }

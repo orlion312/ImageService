@@ -10,7 +10,11 @@ namespace ImageService.ImageService.Commands
 {
     public class CloseCommand : ICommand
     {
-
+        /// <summary>
+        /// Execute the close command.
+        /// </summary>
+        /// <param name="args">The parametrs value</param>
+        /// <param name="result"> True if we succeed the excute</param>
         public string Execute(string[] args, out bool result)
         {
             try

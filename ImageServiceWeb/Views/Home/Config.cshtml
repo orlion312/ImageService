@@ -28,19 +28,21 @@
         <b>@Html.DisplayNameFor(model => model.m_handlers)</b>
         @if (Model.m_handlers != null)
         {
-        <table class="table">
-            @foreach (string handler in Model.m_handlers)
-            {
-            <tr>
-                <td>
-                    @if (handler != null && handler != "")
-                    {
-                        @Html.ActionLink(@handler, "ConfigRemove", "Home", new { dir = handler }, null)
-                    }
-                </td>
-            </tr>
-            }
-        </table>
+            @*show the table of the handlers*@
+            <table class="table">
+                @foreach (string handler in Model.m_handlers)
+                {
+                <tr>
+                    <td>
+                        @if (handler != null && handler != "")
+                        {
+                            @*link to different page, to delete the handler*@
+                            @Html.ActionLink(@handler, "ConfigRemove", "Home", new { dir = handler }, null)
+                        }
+                    </td>
+                </tr>
+                }
+            </table>
         }
     </li>
 </ul>

@@ -11,6 +11,8 @@
 <button type="button" id="Cancel">Cancel</button>
 
 <script type="text/javascript">
+    //the function is satrt when the user press the ok button.
+    //the function disabled the buttons and call to the HandlerDelete function in the controller
     document.getElementById("OK").onclick = function () {
         document.getElementById("Cancel").disabled = true;
         document.getElementById("OK").disabled = true;
@@ -19,6 +21,8 @@
  </script>
 
 <script type="text/javascript">
+    //the function is satrt when the user press the cancel button.
+    //the function disabled the buttons and call to the Config function in the controller
     document.getElementById("Cancel").onclick = function aa() {
         document.getElementById("Cancel").disabled = true;
         document.getElementById("OK").disabled = true;

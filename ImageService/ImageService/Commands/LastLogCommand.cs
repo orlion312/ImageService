@@ -14,11 +14,19 @@ namespace ImageService.ImageService.Commands
     class LastLogCommand:ICommand
     {
         private ILoggingService m_logger;
+
+        //the constructoe of the class
         public LastLogCommand(ILoggingService loggingService)
         {
             this.m_logger = loggingService;
         }
 
+        /// <summary>
+        /// Execute the Last log command.
+        /// </summary>
+        /// <param name="args">The argument that we want to log</param>
+        /// <param name="result"> True if we succeed the excute</param>
+        /// <returns>string of the log.</returns>
         public string Execute(string[] args, out bool result)
         {
             try

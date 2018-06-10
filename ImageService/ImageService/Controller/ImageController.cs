@@ -23,15 +23,13 @@ namespace ImageService.Controller
         /// the constructor of the class, get IImageServiceModal.
         /// </summary>
         /// <param name="modal">an IImageServiceModal that represent the model object</param>
-        public ImageController(IImageServiceModal modal, ILoggingService logger, bool serviceOnline)
+        /// <param name="logger">an ILoggingService that represent the logger object</param>
+        public ImageController(IImageServiceModal modal, ILoggingService logger)
         {
             m_modal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>();
             m_log = logger;
-            if(serviceOnline)
-                serviceStatus = "Running";
-            else
-                serviceStatus = "Offline";
+            serviceStatus = "Running";
 
             // For Now will contain NEW_FILE_COMMAND
             commands[(int)(CommandEnum.NewFileCommand)] = new NewFileCommand(m_modal);

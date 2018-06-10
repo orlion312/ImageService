@@ -15,16 +15,18 @@ namespace ImageService.ImageService.Commands
         private string serviceStatus;
         private int imageCounter;
 
+        //the constructor of the class
         public WebStatusCommand(string servicestatus, IImageServiceModal modal)
         {
             m_modal = modal;
             this.serviceStatus = servicestatus;
 
         }
+
         /// <summary>
-        /// Execute the GetConfigCommand.
+        /// Execute the ImageWeb command.
         /// </summary>
-        /// <param name="args">The parametrs value of each setting</param>
+        /// <param name="args">The parametres value of the Image Web</param>
         /// <param name="result"> True if we succeed the excute</param>
         /// <returns>string of all the parametrs.</returns>
         public string Execute(string[] args, out bool result)

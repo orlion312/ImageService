@@ -65,7 +65,6 @@ namespace ImageService
         /// <param name="args">an array of strings that represent the command lines</param>
         public ImageService1() {
             InitializeComponent();
-            serviceOnline = false;
             string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
             string logName = ConfigurationManager.AppSettings.Get("LogName");
             outputDir = ConfigurationManager.AppSettings["OutputDir"];
@@ -98,9 +97,8 @@ namespace ImageService
         protected override void OnStart(string[] args) {
             IImageServiceModal imageServiceModal = new ImageServiceModal(outputDir, thumbnailSize);
             int counterImages = imageServiceModal.CountImages();
-            serviceOnline = true;
             logger = new LoggingService();
-            this.imageController = new ImageController(imageServiceModal, logger, serviceOnline);
+            this.imageController = new ImageController(imageServiceModal, logger);
             logger.MessageRecieved += onMessage;
 
             m_imageServer = new ImageServer(imageController, logger, counterImages);

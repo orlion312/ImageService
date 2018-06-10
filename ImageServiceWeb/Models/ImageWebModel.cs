@@ -13,14 +13,17 @@ using System.IO;
 
 namespace ImageServiceWeb.Models
 {
+    //the model of the Image Web
     public class ImageWebModel
     {
         private ITcpClient m_client;
         public List<Student> students;
         private bool stop;
 
+        //the constructor of the class
         public ImageWebModel()
         {
+            //initialize the parameters
             initialize();
             string path = Path.Combine(HttpContext.Current.Request.PhysicalApplicationPath, "App_Data", "StudentsDetails.txt");
             string[] lines = System.IO.File.ReadAllLines(path);
@@ -35,18 +38,19 @@ namespace ImageServiceWeb.Models
 
             try
             {
+                //connect to the client
                 m_client = TcpClientChannel.ClientInstance;
                 m_client.DataReceived += GetMessageFromClient;
                 sendCommand();
             }
             catch (Exception e)
             {
-                m_status = "Offline";
-                imageCount = "0";
+                initialize();
                 Console.Write(e.ToString());
             }
         }
 
+        //the function initialize the parameters
         public void initialize()
         {
             stop = false;
@@ -66,13 +70,18 @@ namespace ImageServiceWeb.Models
 
         [Required]
         [DataType(DataType.Text)]
-        public Student yarin { get; set; }
+        public Student detailes { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Image Service Photos Count: ")]
         public string imageCount { get; set; }
 
+        /// <summary>
+        /// the function get the message(the status of the service and the number of photos) from the service
+        /// </summary>
+        /// <param name="sender">the object that sent the data</param>
+        /// <param name="data">the data that the model received</param>
         private void GetMessageFromClient(object sender, DataReceivedEventArgs data)
         {
             string message = data.Message;
@@ -89,17 +98,33 @@ namespace ImageServiceWeb.Models
             stop = true;
         }
 
+        //the function send the command to the service to get the data(status and photos number)
         public void sendCommand()
         {
-            if (m_client.Connect())
+            if (m_client != null)
             {
-                m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.WebStatusCommand, null, null).ToJson());
-                SpinWait.SpinUntil(() => stop);
+                //check if the client connect
+                if (m_client.Connect())
+                {
+                    m_client.Send(new CommandRecievedEventArgs((int)CommandEnum.WebStatusCommand, null, null).ToJson());
+                    //wait till the 
+                    SpinWait.SpinUntil(() => stop);
 
+                }
+                else
+                {
+                    initialize();
+                }
             }
             else
             {
-                initialize();
+                try
+                {
+                    m_client = TcpClientChannel.ClientInstance;
+                    m_client.DataReceived += GetMessageFromClient;
+                    sendCommand();
+                }
+                catch { }
             }
         }
     }
