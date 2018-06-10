@@ -142,18 +142,20 @@ namespace ImageService
         /// </summary>
         protected override void OnStop()
         {
-            logger.Log("On stop", Logging.Modal.MessageTypeEnum.INFO);
+
+            m_imageServer.onCloseService();
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOP_PENDING;
             //OnPending(serviceStatus);
 
-            // Update the service state to Running.  
+            // Update the service state to stopped.  
             serviceStatus.dwCurrentState = ServiceState.SERVICE_STOPPED;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
 
-            m_imageServer.onCloseService();
+
+
         }
 
         public void onDebug()

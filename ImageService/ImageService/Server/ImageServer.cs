@@ -74,9 +74,10 @@ namespace ImageService.Server
         public void onCloseService()
         {
             CloseService?.Invoke(this, null);
+            m_logging.Log("On stop", Logging.Modal.MessageTypeEnum.INFO);
             bool res;
-            string[] arr = { "Service stopped" };
-            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out res);
+            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, null, out res);
+            this.m_tcpServer.NotifyAll(s);
         }
 
         /// <summary>

@@ -152,6 +152,7 @@
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
     <Compile Include="Models\LogsModel.cs" />
+    <Compile Include="Models\PhotosModel.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -192,9 +193,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ImageWeb.cshtml" />
     <Content Include="Views\Home\Config.cshtml" />
-    <Content Include="Views\Home\Photos.cshtml" />
     <Content Include="Views\Home\Logs.cshtml" />
     <Content Include="Views\Home\ConfigRemove.cshtml" />
+    <Content Include="Views\Home\PhotoRemove.cshtml" />
+    <Content Include="Views\Home\ViewPhoto.cshtml" />
+    <Content Include="Views\Home\Photos.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

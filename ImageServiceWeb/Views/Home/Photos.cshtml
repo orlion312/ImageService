@@ -1,6 +1,29 @@
-﻿
+﻿@model ImageServiceWeb.Models.PhotosModel
+
 @{
     ViewBag.Title = "Photos";
 }
 
 <h2>Photos</h2>
+
+@foreach (var pics in Model.dictionary)
+{
+    <div class="col-xs-18 col-sm-6 col-md-3">
+        <div class="thumbnail">
+            @*shows all the thumbnails from the output directory*@
+            <img class="img-circle" src="/@pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/")" alt="Avatar">
+            <div class="caption">
+                <h4>@pics["Name"]</h4>
+                <p>@pics["Date"]</p>
+                @*link to different page, to view the photo *@
+                <p class="btn btn-default btn-xs" style="background-color:lightblue" role="button">@Html.ActionLink("View", "ViewPhoto", "Home", new { pic = pics["Picture"].Replace(Server.MapPath("~"), "").Replace("\\", "/"), name = pics["Name"], date = pics["Date"], thumb = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") }, null)</p>
+                @*link to different page, to delete the photo *@
+                <p class="btn btn-default btn-xs" style="background-color:lightcoral" role="button">@Html.ActionLink("Delete", "PhotoRemove", "Home", new { dir = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") }, null) </p>
+            </div>
+        </div>
+    </div>
+}
+<br />
+<br />
+
+

@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "ViewPhoto";
+}
+
+<h2 style="margin-left:6px;"> <b>@ViewBag.Name</b></h2>
+<h3 style="margin-left:6px;"> Date: @ViewBag.Date</h3>
+<br />
+@*link to different page, links back to the Photos page *@
+<p class="btn btn-default btn-xs" style="background-color:lightcyan" role="button">@Html.ActionLink("Back", "Photos", "Home", new { }, null)</p>
+&emsp;
+&emsp;
+@*link to different page, to delete the photo *@
+<p class="btn btn-default btn-xs" style="background-color:lightcoral" role="button">@Html.ActionLink("Delete", "PhotoRemove", "Home", new { dir = ViewBag.Thumb }, null)</p>
+<br />
+<br />
+<img width="500" height="500" src="/@ViewBag.Pic">

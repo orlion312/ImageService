@@ -69,8 +69,7 @@ namespace ImageService.Controller.Handlers
             {
                 m_logging.Log(msg, MessageTypeEnum.FAIL);
             }
-            string[] arr = { msg };
-            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out result);
+            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, null, out result);
             m_tcpServer.NotifyAll(s);
         }
 
@@ -92,8 +91,7 @@ namespace ImageService.Controller.Handlers
             {
                 m_logging.Log(msg, MessageTypeEnum.FAIL);
             }
-            string[] arr = { msg };
-            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out result);
+            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, null, out result);
             m_tcpServer.NotifyAll(s);
         }
 
@@ -109,10 +107,10 @@ namespace ImageService.Controller.Handlers
             m_dirWatcher.Dispose();
             string msg = "Handler closed " + m_path;
             m_logging.Log(msg, MessageTypeEnum.INFO);
-            string[] arr = { msg };
             bool result;
-            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, arr, out result);
-            m_tcpServer.NotifyAll(s);
+            string s = m_controller.ExecuteCommand((int)CommandEnum.LastLogCommand, null, out result);
+            if(result)
+                m_tcpServer.NotifyAll(s);
         }
     }
 }
