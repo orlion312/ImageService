@@ -16,9 +16,9 @@
                 <h4>@pics["Name"]</h4>
                 <p>@pics["Date"]</p>
                 @*link to different page, to view the photo *@
-                <p class="btn btn-default btn-xs" style="background-color:lightblue" role="button">@Html.ActionLink("View", "ViewPhoto", "Home", new { pic = pics["Picture"].Replace(Server.MapPath("~"), "").Replace("\\", "/"), name = pics["Name"], date = pics["Date"], thumb = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") }, null)</p>
+                <a class="btn btn-info btn-xs" role="button" href="@Url.Action("ViewPhoto", "Home", new { pic = pics["Picture"].Replace(Server.MapPath("~"), "").Replace("\\", "/"), name = pics["Name"], date = pics["Date"], thumb = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") })">View</a>
                 @*link to different page, to delete the photo *@
-                <p class="btn btn-default btn-xs" style="background-color:lightcoral" role="button">@Html.ActionLink("Delete", "PhotoRemove", "Home", new { dir = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") }, null) </p>
+                <a class="btn btn-danger btn-xs" role="button" href="@Url.Action("PhotoRemove", "Home", new { dir = pics["Thumbnails"].Replace(Server.MapPath("~"), "").Replace("\\", "/") })">Delete</a>
             </div>
         </div>
     </div>
