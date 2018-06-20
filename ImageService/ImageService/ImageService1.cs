@@ -16,6 +16,7 @@ using System.Configuration;
 using ImageService.Controller.Handlers;
 using ImageService.Logging.Modal;
 using ImageCommunication;
+using ImageService.ImageService.Modal;
 
 public enum ServiceState
 {
@@ -105,7 +106,13 @@ namespace ImageService
             //m_imageServer.ReceivedData += messageRecieved;
 
             logger.Log("On start", Logging.Modal.MessageTypeEnum.INFO);
-           
+
+            string[] handlesPaths = handledDir.Split(';');
+
+            AndroidModal androidModal;
+            if (handlesPaths[0] != null)
+                androidModal = new AndroidModal(handlesPaths[0], outputDir);
+
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();
