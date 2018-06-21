@@ -56,7 +56,7 @@ namespace ImageService
         private static extern bool SetServiceStatus(IntPtr handle, ref ServiceStatus serviceStatus);
         private ImageServer m_imageServer;
         private readonly string outputDir;
-        private readonly string handledDir;
+        private string handledDir;
         private ImageController imageController;
         private static bool serviceOnline;
 
@@ -107,12 +107,13 @@ namespace ImageService
 
             logger.Log("On start", Logging.Modal.MessageTypeEnum.INFO);
 
-            string[] handlesPaths = handledDir.Split(';');
+            string[] handlesPaths = (ConfigurationManager.AppSettings.Get("Handler").Split(';'));
 
             AndroidModal androidModal;
             if (handlesPaths[0] != null)
+            {
                 androidModal = new AndroidModal(handlesPaths[0], outputDir);
-
+            }
 
             // Update the service state to Start Pending.  
             ServiceStatus serviceStatus = new ServiceStatus();

@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientHandler.cs" />
+    <Compile Include="Client\AndroidClient.cs" />
+    <Compile Include="Client\IAndroidClient.cs" />
     <Compile Include="Client\ITcpClient.cs" />
     <Compile Include="Client\TcpClientChannel.cs" />
     <Compile Include="Events\DataReceivedEventArgs.cs" />

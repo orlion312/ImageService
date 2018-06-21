@@ -20,15 +20,19 @@ namespace ImageCommunication.Client
 
         public event PictureHandle handlePicture;
 
-        private AndroidClient() { start(); }
         /// <summary>
-        /// Starts this instance.
+        /// the constructor of the class
+        /// </summary>
+        private AndroidClient() { start(); }
+        
+        /// <summary>
+        /// the method starts this instance- strats the class.
         /// </summary>
         private void start()
         {
             new Task(() =>
             {
-                int port = 8001;
+                int port = 8500;
                 IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
                 TcpListener listener = new TcpListener(ep);
                 listener.Start();
@@ -51,12 +55,6 @@ namespace ImageCommunication.Client
 
         }
 
-        /// <summary>
-        /// Gets the instance.
-        /// </summary>
-        /// <value>
-        /// The instance.
-        /// </value>
         public static AndroidClient Instance
         {
             get
@@ -72,10 +70,11 @@ namespace ImageCommunication.Client
         public bool ClientConnected { get { return m_clientConnected; } set { m_clientConnected = value; } }
 
         private const int BUFFER_SIZE = 1024;
+        
         /// <summary>
-        /// Recieves the client.
+        /// The method get a parama to recieves the client.
         /// </summary>
-        /// <param name="client">The client.</param>
+        /// <param name="client">The client to receive</param>
         private void recieveClient(TcpClient client)
         {
             new Task(() =>
@@ -88,7 +87,6 @@ namespace ImageCommunication.Client
                     {
                         byte[] bytes = new byte[4096];
 
-                        // get the size of the picture
                         int bytesTransfered = stream.Read(bytes, 0, bytes.Length);
                         string picLen = Encoding.ASCII.GetString(bytes, 0, bytesTransfered);
 
@@ -99,12 +97,9 @@ namespace ImageCommunication.Client
                         }
                         bytes = new byte[int.Parse(picLen)];
 
-                        //get the picture after knowing the size
-
                         bytesTransfered = stream.Read(bytes, 0, bytes.Length);
                         string pictureName = Encoding.ASCII.GetString(bytes, 0, bytesTransfered);
 
-                        //gets the image.
                         int bytesReadFirst = stream.Read(bytes, 0, bytes.Length);
                         int tempBytes = bytesReadFirst;
                         byte[] bytesCurrent;
@@ -118,7 +113,7 @@ namespace ImageCommunication.Client
 
                         handlePicture?.Invoke(pictureName, bytes);
 
-                        Thread.Sleep(100); // Update information every 0.1 seconds
+                        Thread.Sleep(100);
                     }
                     catch (Exception e)
                     {
@@ -128,23 +123,17 @@ namespace ImageCommunication.Client
             }).Start();
         }
         /// <summary>
-        /// Transfers the bytes.
+        /// The mthod get 3 param and transfers the bytes.
         /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="copy">The copy.</param>
-        /// <param name="startPos">The start position.</param>
+        /// <param name="original">The original array bytes</param>
+        /// <param name="copy">The copy array bytes</param>
+        /// <param name="startPos">an Integer that represent the start position</param>
         private void transferBytes(byte[] original, byte[] copy, int startPos)
         {
             for (int i = startPos; i < original.Length; i++)
             {
                 original[i] = copy[i - startPos];
             }
-        }
-
-        public void recieveCommand()
-        {
-            // TODO WHATTTTTT
-            throw new NotImplementedException();
         }
     }
 }

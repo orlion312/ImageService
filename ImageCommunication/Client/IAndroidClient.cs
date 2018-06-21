@@ -10,8 +10,7 @@ namespace ImageCommunication.Client
 
     interface IAndroidClient
     {
-        event PictureHandle handelPicture;
-        void recieveCommand();
+        event PictureHandle handlePicture;
         bool ClientConnected { get; set; }
     }
 }

@@ -77,6 +77,7 @@
     <Compile Include="ImageService\Controller\Handlers\IDirectoryHandler.cs" />
     <Compile Include="ImageService\Controller\IImageController.cs" />
     <Compile Include="ImageService\Controller\ImageController.cs" />
+    <Compile Include="ImageService\Modal\AndroidModal.cs" />
     <Compile Include="ImageService\Modal\Event\CommandRecievedEventArgs.cs" />
     <Compile Include="ImageService\Modal\Event\DirectoryCloseEventArgs.cs" />
     <Compile Include="ImageService\Modal\IImageServiceModal.cs" />
